@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "958916046255",
+    "project_id": "instaclon-ksta",
+    "storage_bucket": "instaclon-ksta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958916046255:android:2dec3ff2cff71c4049d35a",
+        "android_client_info": {
+          "package_name": "com.example.instagram_two_record"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "958916046255-fnhdsrc9lneg2qkdi0bl24u4vat7ak6d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwrtZHANohCwwrES2X4ZndIdBqR9fJjvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "958916046255-fnhdsrc9lneg2qkdi0bl24u4vat7ak6d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
