@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_two_record/constants/auth_input_deco.dart';
 import 'package:instagram_two_record/constants/common_size.dart';
-import 'package:instagram_two_record/home_page.dart';
+import 'package:instagram_two_record/models/firebase_auth_state.dart';
 import 'package:instagram_two_record/widgets/or_divider.dart';
+import 'package:provider/provider.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -16,7 +17,6 @@ class _SignUpFormState extends State<SignUpForm> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _pwController = TextEditingController();
   TextEditingController _pwCheckController = TextEditingController();
-
 
   @override
   void dispose() {
@@ -93,7 +93,10 @@ class _SignUpFormState extends State<SignUpForm> {
             OrDivider(),
             FlatButton.icon(
                 textColor: Colors.blue,
-                onPressed: () {},
+                onPressed: () {
+                  Provider.of<FirebaseAuthState>(context, listen: false)
+                      .changeFirebaseAuthStatus(FirebaseAuthStatus.signin);
+                },
                 icon: ImageIcon(AssetImage('assets/images/facebook.png')),
                 label: Text("login with Facebook"))
           ],
@@ -107,11 +110,11 @@ class _SignUpFormState extends State<SignUpForm> {
         color: Colors.blue,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         onPressed: () {
+
           if (_formKey.currentState!.validate()) {
             print('validation success');
-            Navigator.of(context).pushReplacement(
-                //replacement는 기존화면 없애고 새로운화면, push는 기존화면뒤로보내고 새로운화면
-                MaterialPageRoute(builder: (context) => HomePage()));
+            Provider.of<FirebaseAuthState>(context, listen: false)
+                .registerUser(context, email: _emailController.text, password: _pwController.text);
           }
         },
         child: Text(
@@ -119,5 +122,4 @@ class _SignUpFormState extends State<SignUpForm> {
           style: TextStyle(color: Colors.white),
         ));
   }
-
 }

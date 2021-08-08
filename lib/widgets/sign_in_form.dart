@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_two_record/constants/auth_input_deco.dart';
 import 'package:instagram_two_record/constants/common_size.dart';
+import 'package:instagram_two_record/models/firebase_auth_state.dart';
 import 'package:instagram_two_record/widgets/or_divider.dart';
+import 'package:provider/provider.dart';
 import '../home_page.dart';
 
 class SignInForm extends StatefulWidget {
@@ -81,7 +83,9 @@ class _SignInFormState extends State<SignInForm> {
             TextButton.icon(
                 style: TextButton.styleFrom(primary: Colors.blue),
                 //    textColor: Colors.blue,
-                onPressed: () {},
+                onPressed: () {
+                  Provider.of<FirebaseAuthState>(context, listen: false).changeFirebaseAuthStatus(FirebaseAuthStatus.signin);
+                },
                 icon: ImageIcon(AssetImage('assets/images/facebook.png')),
                 label: Text("login with Facebook"))
           ],
@@ -108,9 +112,8 @@ class _SignInFormState extends State<SignInForm> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             print('validation success');
-            Navigator.of(context).pushReplacement(
-                //replacement는 기존화면 없애고 새로운화면, push는 기존화면뒤로보내고 새로운화면
-                MaterialPageRoute(builder: (context) => HomePage()));
+            Provider.of<FirebaseAuthState>(context, listen: false)
+                .login(context, email: _emailController.text.trim(), password: _pwController.text.trim());
           }
         },
         child: Text(

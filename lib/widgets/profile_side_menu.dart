@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_two_record/screens/auth_screen.dart';
+import 'package:instagram_two_record/models/firebase_auth_state.dart';
+import 'package:provider/provider.dart';
 
 const duration = Duration(milliseconds: 1000);
 
@@ -32,8 +33,7 @@ class ProfileSideMenu extends StatelessWidget {
               ),
               title: Text('Sign Out'),
               onTap: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => AuthScreen()));
+                Provider.of<FirebaseAuthState>(context, listen: false).signOut();
               },
             )
           ],
